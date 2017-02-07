@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Band List</h2>
+
+@using (Html.BeginForm("Create", "Band"))
+{
+    <p>
+        @Html.TextBox("Name", null, new { @class = "form-control", placeholder = "Name" })
+    </p>
+    <p>
+        @Html.TextBox("Genre", null, new { @class = "form-control", placeholder = "Genre" })
+    </p>
+    <p>
+        @Html.TextBox("Formed", null, new { @class = "form-control", placeholder = "Date Formed" })
+    </p>
+    <p>
+        <input type="submit" class="btn btn-primary" value="Add Band" />
+    </p>
+}
+
+<div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Formed</th>
+                <th>View Albums</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var band in ViewBag.AllBands)
+            {
+                <tr>
+                    <td></td>
+                    <td>@band.Name</td>
+                    <td>@band.Genre</td>
+                    <td>@band.Formed</td>
+                    <td>@Html.ActionLink("View Albums", "Index", "Album")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
