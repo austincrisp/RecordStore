@@ -29,7 +29,6 @@
                 <th>Name</th>
                 <th>Genre</th>
                 <th>Formed</th>
-                <th>View Albums</th>
             </tr>
         </thead>
         <tbody>
@@ -40,9 +39,16 @@
                     <td>@band.Name</td>
                     <td>@band.Genre</td>
                     <td>@band.Formed</td>
-                    <td>@Html.ActionLink("View Albums", "Index", "Album")</td>
                 </tr>
+                <tr></tr>
+                foreach (var album in band.Albums)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@album.Title Tracks:@album.TotalTracks Released:@album.ReleaseDate</td>
+                    </tr>
+                }
             }
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
