@@ -37,11 +37,13 @@ namespace RecordStore.Controllers
         }
 
         // GET: Album/Create
+        /*
         public ActionResult Create()
         {
             ViewBag.BandId = new SelectList(db.Bands, "Id", "Name");
             return View();
         }
+        */
 
         // POST: Album/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -54,7 +56,7 @@ namespace RecordStore.Controllers
             {
                 db.Albums.Add(album);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Band", new { id = album.BandId });
             }
 
             ViewBag.BandId = new SelectList(db.Bands, "Id", "Name", album.BandId);
@@ -62,6 +64,7 @@ namespace RecordStore.Controllers
         }
 
         // GET: Album/Edit/5
+        /*
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,6 +79,7 @@ namespace RecordStore.Controllers
             ViewBag.BandId = new SelectList(db.Bands, "Id", "Name", album.BandId);
             return View(album);
         }
+        */
 
         // POST: Album/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

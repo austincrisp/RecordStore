@@ -1,0 +1,30 @@
+﻿@model RecordStore.Models.Band
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit @Model.Name</h2>
+
+@using (Html.BeginForm("Edit", "Band"))
+{
+    <p>
+        @Html.TextBox("Name", Model.Name, new { @class = "form-control" })
+    </p>
+    <p>
+        @Html.TextBox("Genre", Model.Genre, new { @class = "form-control" })
+    </p>
+    <p>
+        @Html.TextBox("Formed", Model.Formed, new { @class = "form-control" })
+    </p>
+    <p>
+        @Html.Hidden("BandId", Model.Id, new { @class = "form-control" })
+    </p>
+    <p>
+        <input type="submit" class="btn btn-primary" value="Save" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Back to Bands", "Index")
+</div>

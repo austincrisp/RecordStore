@@ -1,0 +1,59 @@
+﻿@model RecordStore.Models.Band
+
+<h2>@Model.Name Album List</h2>
+
+@using (Html.BeginForm("Create", "Album"))
+{
+
+    @Html.AntiForgeryToken()
+
+    <p>
+        @Html.TextBox("Title", null, new { @class = "form-control", placeholder = "Title" })
+    </p>
+    <p>
+        @Html.TextBox("TotalTracks", null, new { @class = "form-control", placeholder = "# of Tracks" })
+    </p>
+    <p>
+        @Html.TextBox("ReleaseDate", null, new { @class = "form-control", placeholder = "Release Date" })
+    </p>
+    <p>
+        @Html.Hidden("BandId", Model.Id, new { @class = "form-control"})
+    </p>
+    <p>
+        <input type="submit" class="btn btn-primary" value="Add Album" />
+    </p>
+}
+
+<div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th># of Tracks</th>
+                <th>Release Date</th>
+                <th>View Tracks</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var album in ViewBag.BandAlbums)
+            {
+                <tr>
+                    <td></td>
+                    <td>@album.Title</td>
+                    <td>@album.TotalTracks</td>
+                    <td>@album.ReleaseDate</td>
+                    <td>@Html.ActionLink("View Tracks", "Tracks", new { id = album.Id })</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = album.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = album.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    @Html.ActionLink("Back to Bands", "Index", "Band")
+</div>

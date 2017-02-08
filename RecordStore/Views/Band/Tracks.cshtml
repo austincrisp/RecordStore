@@ -1,0 +1,45 @@
+﻿@model RecordStore.Models.Album
+
+<h2>@Model.Title Tracks</h2>
+
+@using (Html.BeginForm("Create", "Track"))
+{
+    <p>
+        @Html.TextBox("TrackTitle", null, new { @class = "form-control", placeholder = "Title" })
+    </p>
+    <p>
+        @Html.TextBox("Length", null, new { @class = "form-control", placeholder = "Length" })
+    </p>
+    <p>
+        @Html.Hidden("AlbumId", Model.Id, new { @class = "form-control" })
+    </p>
+    <p>
+        <input type="submit" class="btn btn-primary" value="Add Track" />
+    </p>
+}
+
+<div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Length</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var track in ViewBag.AlbumTracks)
+            {
+                <tr>
+                    <td></td>
+                    <td>@track.TrackTitle</td>
+                    <td>@track.Length</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    @Html.ActionLink("Back to Albums", "Albums", new { id = Model.Band.Id })
+</div>

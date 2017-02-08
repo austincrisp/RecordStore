@@ -131,12 +131,17 @@
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\BandController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TrackController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201702071843183_Initial.cs" />
     <Compile Include="Migrations\201702071843183_Initial.Designer.cs">
       <DependentUpon>201702071843183_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702082137023_ChangedTitletoTrack.cs" />
+    <Compile Include="Migrations\201702082137023_ChangedTitletoTrack.Designer.cs">
+      <DependentUpon>201702082137023_ChangedTitletoTrack.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -184,6 +189,10 @@
     <Content Include="Views\Album\Details.cshtml" />
     <Content Include="Views\Album\Edit.cshtml" />
     <Content Include="Views\Album\Index.cshtml" />
+    <Content Include="Views\Band\Albums.cshtml" />
+    <Content Include="Views\Band\Tracks.cshtml" />
+    <Content Include="Views\Track\Create.cshtml" />
+    <Content Include="Views\Band\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -199,6 +208,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702071843183_Initial.resx">
       <DependentUpon>201702071843183_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702082137023_ChangedTitletoTrack.resx">
+      <DependentUpon>201702082137023_ChangedTitletoTrack.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
