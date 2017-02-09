@@ -45,8 +45,8 @@
                     <td>@album.ReleaseDate</td>
                     <td>@Html.ActionLink("View Tracks", "Tracks", new { id = album.Id })</td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = album.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = album.Id })
+                        @Html.ActionLink("Edit", "Edit", "Album", new { id = album.Id }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Album", new { id = album.Id }, null)
                     </td>
                 </tr>
             }

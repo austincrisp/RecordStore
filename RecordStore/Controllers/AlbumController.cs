@@ -56,15 +56,14 @@ namespace RecordStore.Controllers
             {
                 db.Albums.Add(album);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Band", new { id = album.BandId });
+                return RedirectToAction("Albums", "Band", new { id = album.BandId });
             }
 
-            ViewBag.BandId = new SelectList(db.Bands, "Id", "Name", album.BandId);
             return View(album);
         }
 
         // GET: Album/Edit/5
-        /*
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,10 +75,8 @@ namespace RecordStore.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BandId = new SelectList(db.Bands, "Id", "Name", album.BandId);
             return View(album);
         }
-        */
 
         // POST: Album/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -92,9 +89,8 @@ namespace RecordStore.Controllers
             {
                 db.Entry(album).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Albums", "Band", new { id = album.BandId });
             }
-            ViewBag.BandId = new SelectList(db.Bands, "Id", "Name", album.BandId);
             return View(album);
         }
 
@@ -121,7 +117,7 @@ namespace RecordStore.Controllers
             Album album = db.Albums.Find(id);
             db.Albums.Remove(album);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Albums", "Band", new { id = album.BandId });
         }
 
         protected override void Dispose(bool disposing)

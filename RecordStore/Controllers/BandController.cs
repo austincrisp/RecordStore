@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Net;
 
 namespace RecordStore.Controllers
 {
@@ -27,25 +28,58 @@ namespace RecordStore.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Band band = db.Bands.Find(id);
+            if (band == null)
+            {
+                return HttpNotFound();
+            }
+            return View(band);
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Name,Genre,Formed")] Band band)
+        {
             if (ModelState.IsValid)
             {
                 db.Entry(band).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Band");
+                return RedirectToAction("Index");
             }
 
             return View(band);
         }
 
-        [HttpPost]
-        public ActionResult Delete()
+        // GET: Album/Delete/5
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Band band = db.Bands.Find(id);
+            if (band == null)
+            {
+                return HttpNotFound();
+            }
+            return View(band);
+        }
+
+        // POST: Album/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Band band = db.Bands.Find(id);
+            db.Bands.Remove(band);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Albums(int id)

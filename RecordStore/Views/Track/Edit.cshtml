@@ -1,0 +1,29 @@
+﻿@model RecordStore.Models.Track
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit @Model.TrackTitle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <p>
+        @Html.TextBox("TrackTitle", Model.TrackTitle, new { @class = "form-control" })
+    </p>
+    <p>
+        @Html.TextBox("Length", Model.Length, new { @class = "form-control" })
+    </p>
+    <p>
+        @Html.Hidden("AlbumId", Model.Album.Id, new { @class = "form-control" })
+    </p>
+    <p>
+        <input type="submit" class="btn btn-primary" value="Save" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Back to Tracks", "Tracks", "Band", new { id = Model.Album.Id }, null)
+</div>

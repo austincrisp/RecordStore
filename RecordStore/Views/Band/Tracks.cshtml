@@ -34,6 +34,10 @@
                     <td></td>
                     <td>@track.TrackTitle</td>
                     <td>@track.Length</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Track", new { id = track.Id }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Track", new { id = track.Id }, null)
+                    </td>
                 </tr>
             }
         </tbody>

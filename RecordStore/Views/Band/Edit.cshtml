@@ -6,8 +6,10 @@
 
 <h2>Edit @Model.Name</h2>
 
-@using (Html.BeginForm("Edit", "Band"))
+@using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
+
     <p>
         @Html.TextBox("Name", Model.Name, new { @class = "form-control" })
     </p>
@@ -16,9 +18,6 @@
     </p>
     <p>
         @Html.TextBox("Formed", Model.Formed, new { @class = "form-control" })
-    </p>
-    <p>
-        @Html.Hidden("BandId", Model.Id, new { @class = "form-control" })
     </p>
     <p>
         <input type="submit" class="btn btn-primary" value="Save" />
